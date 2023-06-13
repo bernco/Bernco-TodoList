@@ -1,0 +1,33 @@
+<%- include("header") -%>
+          
+        <div class="box" id="heading">
+            <h1>
+                <%= kindOfDay %>
+            </h1>
+            <h2>  <%= taskType.charAt(0).toUpperCase() + taskType.slice(1) %> Todos </h2>
+        </div>
+
+        <div class="box">
+            <%  todos.forEach((todo)=>{ %>
+            <form action="/delete" method="post" class="todoItem">
+              
+                    <div class="item">
+                        <input type="checkbox" name="checked" value="<%=todo._id%>" onchange="this.form.submit()">
+                        
+                        <p>
+                            <%= todo.task %>
+                        </p>
+                    </div>
+                    
+                <% }) %>
+                <input type="hidden" name="listName" value="<%=listType%>"></input>
+            </form>
+            
+            <form action="/" method="post" class="item">
+                <input type="text" id="myInput" name="newTask" placeholder="What to do?" autocomplete="off">
+                <button type="submit" name="mlist" value="<%=listType%>">+</button>
+            </form>
+        </div>
+    </body>
+    <%- include("footer") -%>
+    </html>
